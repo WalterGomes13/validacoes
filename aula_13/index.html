@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <label for="email">Email</label>
+        <input type="email" id="email">
+        <label for="senha">Senha</label>
+        <input type="password" id="senha">
+        <button type="submit" id="enviar"></button>
+        <div id="erro"></div>
+    </form>
+    <script>
+        //Atividade 01
+        const email = document.getElementById('email');
+        const senha = document.getElementById('senha');
+        const btn = document.getElementById('enviar');
+        const text = document.getElementById('erro');
+
+        btn.addEventListener('click',(e)=>{
+            e.preventDefault();
+
+            try{
+                validarEmail(email.value);
+                validarSenha(senha.value);
+                text.textContent = '';
+
+                console.log('Formulário enviado com sucesso')
+                alert("Formulario enviado")
+            } catch(erro){
+                text.textContent = erro.message;
+            }
+        })
+
+        function validarEmail(email){
+                if(!email){
+                    throw new Error('O email é obrigatório');
+                }
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if(!emailRegex.test(email)){
+                    throw new Error('Por favor, insira um endereço de email válido');
+                }
+            }
+
+        function validarSenha(senha){
+                if(!senha){
+                    throw new Error('A senha é obrigatória');
+                }
+                if(senha.length <6){
+                    throw new Error('A senha deve ter pelo menos 6 caracteres');
+                }
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if(!emailRegex.test(email)){
+                    throw new Error('Por favor, insira um endereço de email válido');
+                }
+            }
+        /*try{
+            let nome = document.getElementById('nome').value;
+            cadastraUsuario(nome);
+        }
+        catch(erro){
+            alert("Algo deu errado "+ erro.message);
+        }
+        finally{
+            console.log("Este código foi finalizado");
+        }*/
+
+        /*function dividir(a,b){
+            if(b===0){
+                throw "Divisão por zero não é permitidaaaaaa";
+            }
+            return a/b;
+        }
+
+        try{
+            const resultado = dividir(10,0);
+            console.log("Resultado: ",resultado);
+        } catch(erro){
+            console.error("Ocorreu um erro:",erro);
+        }*/
+
+        /*function validarIdade(idade){
+            if(typeof idade !=='number' || idade<0){
+                throw "A idade deve ser um número positivo"
+            }
+            if(idade < 18){
+                throw "Você é menor de idade";
+            }
+            console.log("Acesso permitido. Bem-vindo!");
+        }
+
+        try{
+            validarIdade(25);
+        } catch(erro){
+            console.error("Ocorreu um erro:",erro);
+        }*/
+    </script>
+</body>
+</html>
